@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dynakube
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dynatrace
+  source:
+    repoURL: https://github.com/alissonit/helm-dynakube.git
+    targetRevision: main
+    path: dynakube-chart
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,6 +1,6 @@
 name: dynakube
 namespace: dynatrace
-apiUrl: https://qnk78406.apps.dynatrace.com/api
+apiUrl: https://qnk78406.live.dynatrace.com/api
 metadataEnrichment:
   enabled: true
 activeGate:

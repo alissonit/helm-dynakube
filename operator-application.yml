@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dynatrace-operator
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dynatrace
+  source:
+    repoURL: public.ecr.aws/dynatrace
+    chart: dynatrace-operator
+    targetRevision: 1.0.0
+    helm:
+      releaseName: dynatrace-operator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

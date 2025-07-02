@@ -1,0 +1,31 @@
+apiVersion: dynatrace.com/v1beta3
+kind: DynaKube
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+    feature.dynatrace.com/k8s-app-enabled: "true"
+    feature.dynatrace.com/injection-readonly-volume: "true"
+spec:
+  apiUrl: {{ .Values.apiUrl }}
+  metadataEnrichment:
+    enabled: {{ .Values.metadataEnrichment.enabled }}
+  oneAgent:
+    cloudNativeFullStack:
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Exists
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/control-plane
+          operator: Exists
+  activeGate:
+    capabilities:
+{{ toYaml .Values.activeGate.capabilities | indent 6 }}
+    resources:
+      requests:
+        cpu: {{ .Values.activeGate.resources.requests.cpu }}
+        memory: {{ .Values.activeGate.resources.requests.memory }}
+      limits:
+        cpu: {{ .Values.activeGate.resources.limits.cpu }}
+        memory: {{ .Values.activeGate.resources.limits.memory }}

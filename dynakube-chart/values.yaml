@@ -1,0 +1,16 @@
+name: dynakube
+namespace: dynatrace
+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api
+metadataEnrichment:
+  enabled: true
+activeGate:
+  capabilities:
+    - routing
+    - kubernetes-monitoring
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1.5Gi

@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
   annotations:
     feature.dynatrace.com/k8s-app-enabled: "true"
-    feature.dynatrace.com/injection-readonly-volume: "true"
+    #feature.dynatrace.com/injection-readonly-volume: "true"
 spec:
   apiUrl: {{ .Values.apiUrl }}
   metadataEnrichment:
